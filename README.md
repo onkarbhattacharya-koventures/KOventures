@@ -1,5 +1,61 @@
-# Firebase Studio
+# KOVentures Website
 
-This is a NextJS starter in Firebase Studio.
+This is the official website for KOVentures, a company specializing in renewable energy solutions, precision calibration benches, and other innovative ventures.
 
-To get started, take a look at src/app/page.tsx.
+## Features
+
+- **Responsive Design**: The website is fully responsive and works on all devices.
+- **Animations**: The website uses animations to make it more engaging for users.
+- **Contact Form**: Users can contact KOVentures directly through the website.
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+### Usage
+
+To start the development server, run:
+
+```sh
+   npm run dev
+```
+
+To build the application for production, run:
+
+```sh
+    npm run build
+```
+
+### Deployment
+
+To deploy the application, run:
+
+```sh
+    npm run start
+```
+

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Logo from '@/components/logo';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { href: '#renewable-energy', label: 'Renewable Energy' },
@@ -59,31 +60,53 @@ export default function Header() {
             </Button>
         </div>
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-expanded={isMenuOpen} aria-controls="mobile-menu">
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg">
-          <nav className="flex flex-col items-center gap-4 p-4 border-t">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-headline text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                onClick={closeMenu}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-background/95 backdrop-blur-lg"
+          >
+            <nav className="flex flex-col items-center gap-4 p-4 border-t">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 + 0.2, duration: 0.3 }}
+                >
+                  <Link
+                    href={link.href}
+                    className="font-headline text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 + 0.2, duration: 0.3 }}
+                  className="w-full"
               >
-                {link.label}
-              </Link>
-            ))}
-            <Button asChild className="mt-4 w-full" size="lg">
-                <Link href="#contact" onClick={closeMenu}>Contact Us</Link>
-            </Button>
-          </nav>
-        </div>
-      )}
+                <Button asChild className="mt-4 w-full" size="lg">
+                    <Link href="#contact" onClick={closeMenu}>Contact Us</Link>
+                </Button>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
