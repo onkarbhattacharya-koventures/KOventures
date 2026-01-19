@@ -29,18 +29,20 @@ export default function Contact() {
     setState({ message: '', success: false, error: false });
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
-    };
+    const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || 'mjkgpryl'; // Default or placeholder
 
-    // Since this is a static export, we can't use Server Actions.
-    // In a real scenario, you would use a service like Formspree, Getform, or a custom API.
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
       
       setState({
         message: 'Thank you for your message! We will get back to you shortly.',
