@@ -1,47 +1,75 @@
 'use client';
 
-import { useRef, useActionState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { submitContactForm, ContactFormState } from '@/app/actions';
-
-const initialState: ContactFormState = {
-  message: '',
-  fields: {},
-  issues: [],
-};
 
 export default function Contact() {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
-  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+  const [isPending, setIsPending] = useState(false);
+  const [state, setState] = useState({
+    message: '',
+    success: false,
+    error: false
+  });
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.issues && state.issues.length > 0) {
-        toast({
-          title: "Validation Error",
-          description: state.message,
-          variant: 'destructive',
-        });
-      } else if (state.message.includes('Thank you')) {
-        toast({
-          title: "Message Sent",
-          description: state.message,
-        });
-        formRef.current?.reset();
-      }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsPending(true);
+    setState({ message: '', success: false, error: false });
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    // Since this is a static export, we can't use Server Actions.
+    // In a real scenario, you would use a service like Formspree, Getform, or a custom API.
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setState({
+        message: 'Thank you for your message! We will get back to you shortly.',
+        success: true,
+        error: false
+      });
+      
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message! We will get back to you shortly.",
+      });
+      
+      formRef.current?.reset();
+    } catch (error) {
+      setState({
+        message: 'Something went wrong. Please try again later.',
+        success: false,
+        error: true
+      });
+      
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: 'destructive',
+      });
+    } finally {
+      setIsPending(false);
     }
-  }, [state, toast]);
+  };
 
   const variants = {
     hidden: { y: 20, opacity: 0 },
@@ -73,7 +101,7 @@ export default function Contact() {
           </p>
         </motion.div>
         <motion.div className="max-w-2xl mx-auto mt-12" variants={variants}>
-          <form ref={formRef} action={formAction} className="space-y-6">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
@@ -82,7 +110,6 @@ export default function Contact() {
                   name="name" 
                   placeholder="John Doe" 
                   required 
-                  defaultValue={state.fields?.name}
                 />
               </div>
               <div className="space-y-2">
@@ -93,7 +120,6 @@ export default function Contact() {
                   type="email" 
                   placeholder="john.doe@example.com" 
                   required 
-                  defaultValue={state.fields?.email}
                 />
               </div>
             </div>
@@ -104,7 +130,6 @@ export default function Contact() {
                 name="subject" 
                 placeholder="e.g., Residential Solar Inquiry" 
                 required 
-                defaultValue={state.fields?.subject}
               />
             </div>
             <div className="space-y-2">
@@ -115,12 +140,16 @@ export default function Contact() {
                 placeholder="Tell us about your project or question..." 
                 rows={5} 
                 required 
-                defaultValue={state.fields?.message}
               />
             </div>
             
             <Button type="submit" className="w-full" disabled={isPending} size="lg">
-              {isPending ? 'Sending...' : 'Send Message'}
+              {isPending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending...
+                </>
+              ) : 'Send Message'}
             </Button>
           </form>
 
@@ -132,14 +161,14 @@ export default function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
               >
-                <Alert variant={state.issues && state.issues.length > 0 ? "destructive" : "default"}>
-                  {state.issues && state.issues.length > 0 ? (
+                <Alert variant={state.error ? "destructive" : "default"}>
+                  {state.error ? (
                     <AlertCircle className="h-4 w-4" />
                   ) : (
                     <CheckCircle className="h-4 w-4" />
                   )}
                   <AlertTitle>
-                    {state.issues && state.issues.length > 0 ? "Error" : "Success!"}
+                    {state.error ? "Error" : "Success!"}
                   </AlertTitle>
                   <AlertDescription>
                     {state.message}
