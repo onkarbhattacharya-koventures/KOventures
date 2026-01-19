@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import { sendContactEmail } from '@/services/mail-service';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -20,10 +21,10 @@ export async function submitContactForm(
   formData: FormData
 ): Promise<ContactFormState> {
   const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    subject: formData.get('subject'),
-    message: formData.get('message'),
+    name: formData.get('name') as string,
+    email: formData.get('email') as string,
+    subject: formData.get('subject') as string,
+    message: formData.get('message') as string,
   };
 
   const validatedFields = contactSchema.safeParse(data);
@@ -31,69 +32,20 @@ export async function submitContactForm(
   if (!validatedFields.success) {
     return {
       message: 'Please check the fields below for errors.',
-      fields: data as Record<string, string>,
+      fields: data,
       issues: validatedFields.error.issues.map((issue) => issue.message),
     };
   }
 
-  // Create a transporter using environment variables
-  // If these are not set, we will log the email to the console for development.
-  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
-    try {
-      const nodemailer = await import('nodemailer');
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      });
-
-      await transporter.sendMail({
-        from: `"KOVentures Site" <${process.env.SMTP_USER}>`,
-        to: "contact@koventures.co.uk",
-        replyTo: data.email as string,
-        subject: `New Contact Form Submission: ${data.subject}`,
-        text: `
-Name: ${data.name}
-Email: ${data.email}
-Subject: ${data.subject}
-
-Message:
-${data.message}
-        `,
-        html: `
-<h3>New Contact Form Submission</h3>
-<p><strong>Name:</strong> ${data.name}</p>
-<p><strong>Email:</strong> ${data.email}</p>
-<p><strong>Subject:</strong> ${data.subject}</p>
-<br/>
-<p><strong>Message:</strong></p>
-<p>${(data.message as string).replace(/\n/g, '<br>')}</p>
-        `,
-      });
-
-      console.log('Email sent successfully to contact@koventures.co.uk');
-    } catch (error) {
-      console.error('Failed to send email:', error);
-      return {
-        message: 'Could not send message due to server error. Please try again later.',
-        fields: data as Record<string, string>,
-        issues: ['Server Configuration Error'],
-      };
-    }
-  } else {
-    // Development Fallback
-    console.log('----------------------------------------');
-    console.log(' DEVELOPMENT MODE: Email not sent');
-    console.log(' To enable email sending, configure SMTP_HOST, SMTP_USER, SMTP_PASS in .env');
-    console.log('----------------------------------------');
-    console.log(' To: contact@koventures.co.uk');
-    console.log(` Subject: New Contact Form Submission: ${data.subject}`);
-    console.log(data);
-    console.log('----------------------------------------');
+  try {
+    await sendContactEmail(validatedFields.data);
+  } catch (error) {
+    console.error('Failed to send email:', error);
+    return {
+      message: 'Could not send message due to server error. Please try again later.',
+      fields: data,
+      issues: ['Server Configuration Error'],
+    };
   }
 
   return {
