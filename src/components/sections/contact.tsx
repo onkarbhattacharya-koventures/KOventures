@@ -1,7 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import { submitContactForm } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,7 +23,7 @@ function SubmitButton() {
 
 export default function Contact() {
   const initialState = { message: '', issues: [], fields: {} };
-  const [state, formAction] = useFormState(submitContactForm, initialState);
+  const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -52,12 +52,12 @@ export default function Contact() {
   const variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.6,
-            staggerChildren: 0.2
-        },
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      },
     },
   };
 
@@ -100,7 +100,7 @@ export default function Contact() {
             </div>
             <SubmitButton />
           </form>
-          
+
           <AnimatePresence>
             {showSuccess && (
               <motion.div

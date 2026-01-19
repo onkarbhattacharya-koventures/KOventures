@@ -9,13 +9,13 @@ const founders = [
     name: 'Onkar Bhattacharya',
     title: 'Director and CEO',
     description: 'A visionary architect of the digital realm and a pioneer in the fusion of artificial intelligence and sustainable energy. With deep-rooted expertise in large-scale industrial systems, he is dedicated to weaving a greener future through technological mastery and entrepreneurial spirit.',
-    image: '/founder1.png', // Placeholder image path
+    image: '/images/onkar.svg', // Local placeholder image
   },
   {
     name: 'Dr. Harkeerat Maan',
     title: 'Director and COO',
     description: 'A guardian of both the health and the planet, Dr. Maan seamlessly blends his clinical wisdom as a Doctor with a fierce devotion to environmental stewardship. A healer and an entrepreneur, he is driven by a profound mission to nurture a world that is as healthy as it is sustainable.',
-    image: '/founder2.png', // Placeholder image path
+    image: '/images/harkeerat.svg', // Local placeholder image
   },
 ];
 

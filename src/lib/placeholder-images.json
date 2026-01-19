@@ -3,37 +3,37 @@
     {
       "id": "hero-background",
       "description": "A wind turbine against a sunset.",
-      "imageUrl": "https://images.unsplash.com/photo-1560279966-2d681f3d4dfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyZW5ld2FibGUlMjBlbmVyZ3l8ZW58MHx8fHwxNzY4NjQzMzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/hero-background.svg",
       "imageHint": "renewable energy"
     },
     {
       "id": "residential-energy",
       "description": "Solar panels on a suburban house roof.",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1566838803980-56bfa5300e8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzb2xhciUyMHBhbmVscyUyMGhvbWV8ZW58MHx8fHwxNzY4NzU0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/residential-energy.svg",
       "imageHint": "solar panels home"
     },
     {
       "id": "agricultural-energy",
       "description": "Wind turbines in a rural farm field.",
-      "imageUrl": "https://images.unsplash.com/photo-1711758091771-f126c7e67b07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3aW5kJTIwdHVyYmluZSUyMGZhcm18ZW58MHx8fHwxNzY4NzU0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/agricultural-energy.svg",
       "imageHint": "wind turbine farm"
     },
     {
       "id": "commercial-energy",
       "description": "Solar panels on a large commercial building.",
-      "imageUrl": "https://images.unsplash.com/photo-1559079680-d7d0f01f7cfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzb2xhciUyMHBhbmVscyUyMGZhY3Rvcnl8ZW58MHx8fHwxNzY4NzU0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/commercial-energy.svg",
       "imageHint": "solar panels factory"
     },
     {
       "id": "calibration-bench",
       "description": "A high-tech calibration laboratory bench.",
-      "imageUrl": "https://images.unsplash.com/photo-1627704671340-0969d7dbac25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjYWxpYnJhdGlvbiUyMGxhYm9yYXRvcnl8ZW58MHx8fHwxNzY4NzU0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/calibration-bench.svg",
       "imageHint": "calibration laboratory"
     },
     {
       "id": "other-ventures",
       "description": "Abstract image of gears and lightbulbs representing innovation.",
-      "imageUrl": "https://images.unsplash.com/photo-1598520106896-fb5263f3bc33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxidXNpbmVzcyUyMGlubm92YXRpb258ZW58MHx8fHwxNzY4NzU0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/other-ventures.svg",
       "imageHint": "business innovation"
     }
   ]

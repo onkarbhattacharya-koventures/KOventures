@@ -1,12 +1,20 @@
 import Image from 'next/image';
+import Designer from '@/app/Designer.png';
 
-export default function Logo() {
+interface LogoProps {
+  className?: string;
+  width?: number;
+  height?: number;
+}
+
+export default function Logo({ className, width = 32, height = 32 }: LogoProps) {
   return (
     <Image
-      src="@/app/Designer.png"
-      alt="Logo"
-      width={32}
-      height={32}
+      src={Designer}
+      alt="KOVentures Logo"
+      width={width}
+      height={height}
+      className={className}
     />
   );
 }
