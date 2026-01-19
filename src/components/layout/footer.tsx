@@ -16,9 +16,9 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex gap-4">
-            <Link href="#" aria-label="Github" className="text-primary-foreground/80 hover:text-white transition-colors"><Github className="h-6 w-6" /></Link>
-            <Link href="#" aria-label="Twitter" className="text-primary-foreground/80 hover:text-white transition-colors"><Twitter className="h-6 w-6" /></Link>
-            <Link href="#" aria-label="LinkedIn" className="text-primary-foreground/80 hover:text-white transition-colors"><Linkedin className="h-6 w-6" /></Link>
+            {/* <Link href="#" aria-label="Github" className="text-primary-foreground/80 hover:text-white transition-colors"><Github className="h-6 w-6" /></Link> */}
+            {/* <Link href="#" aria-label="Twitter" className="text-primary-foreground/80 hover:text-white transition-colors"><Twitter className="h-6 w-6" /></Link> */}
+            <Link href="https://www.linkedin.com/company/koventures-ltd/" aria-label="LinkedIn" className="text-primary-foreground/80 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer"><Linkedin className="h-6 w-6" /></Link>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-primary-foreground/60 text-sm">
