@@ -24,7 +24,11 @@ export const metadata: Metadata = {
   description: 'KOVentures LTD is a leader in renewable energy, precision calibration, and innovative future ventures.',
   keywords: ['Renewable Energy', 'Calibration', 'KOVentures', 'Innovation'],
   authors: [{ name: 'KOVentures' }],
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
