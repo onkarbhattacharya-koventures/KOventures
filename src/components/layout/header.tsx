@@ -36,28 +36,33 @@ export default function Header() {
         isScrolled || isMenuOpen ? 'bg-background/80 shadow-md backdrop-blur-lg' : 'bg-transparent'
       )}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
-          <Logo />
-          <span className="font-headline text-xl font-bold text-primary">
-            KOVentures Hub
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+        <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
+          <Logo width={40} height={40} />
+          <span className="font-headline text-xl font-bold tracking-tight text-foreground">
+            KOVentures
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-headline text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:font-semibold"
             >
               {link.label}
             </Link>
           ))}
+          <Button asChild variant="secondary" size="sm" className="rounded-full font-bold">
+            <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer">
+              KO Energy
+            </a>
+          </Button>
         </nav>
         <div className="hidden md:block">
-            <Button asChild>
-                <Link href="#contact">Contact Us</Link>
-            </Button>
+          <Button asChild className="rounded-full px-6">
+            <Link href="#contact">Contact Us</Link>
+          </Button>
         </div>
         <div className="md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-expanded={isMenuOpen} aria-controls="mobile-menu">
@@ -68,43 +73,75 @@ export default function Header() {
       </div>
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg"
-          >
-            <nav className="flex flex-col items-center gap-4 p-4 border-t">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 + 0.2, duration: 0.3 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="font-headline text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                    onClick={closeMenu}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+            />
+
+            {/* Slide-out Menu */}
+            <motion.div
+              id="mobile-menu"
+              className="fixed right-0 top-0 z-50 h-full w-[80%] max-w-sm bg-background/95 p-6 shadow-2xl backdrop-blur-xl md:hidden"
+              initial={{ x: '100%' }}
+              animate={{ x: '0%' }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+            >
+              <div className="flex flex-col h-full">
+                <div className="flex justify-end mb-8">
+                  <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
+                    <X className="h-6 w-6" />
+                    <span className="sr-only">Close menu</span>
+                  </Button>
+                </div>
+
+                <nav className="flex flex-col gap-6">
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 + 0.1 }}
+                    >
+                      <Link
+                        href={link.href}
+                        className="block text-2xl font-headline font-bold text-foreground transition-colors hover:text-primary"
+                        onClick={closeMenu}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.1 + 0.1 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navLinks.length * 0.1 + 0.2, duration: 0.3 }}
-                  className="w-full"
-              >
-                <Button asChild className="mt-4 w-full" size="lg">
-                    <Link href="#contact" onClick={closeMenu}>Contact Us</Link>
-                </Button>
-              </motion.div>
-            </nav>
-          </motion.div>
+                    <Button asChild variant="secondary" className="w-full rounded-full text-lg h-12 font-bold">
+                      <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+                        KO Energy
+                      </a>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (navLinks.length + 1) * 0.1 + 0.1 }}
+                    className="mt-4"
+                  >
+                    <Button asChild className="w-full rounded-full text-lg h-12">
+                      <Link href="#contact" onClick={closeMenu}>Contact Us</Link>
+                    </Button>
+                  </motion.div>
+                </nav>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

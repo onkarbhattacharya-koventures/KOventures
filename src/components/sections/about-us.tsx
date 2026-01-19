@@ -24,7 +24,7 @@ export default function FoundersSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="founders-section reveal py-20" aria-labelledby="founders-heading">
+    <section ref={ref} className="founders-section py-20" aria-labelledby="founders-heading">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}

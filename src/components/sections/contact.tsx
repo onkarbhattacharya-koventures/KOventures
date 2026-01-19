@@ -1,32 +1,26 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
-import { useActionState, useEffect, useRef, useState } from 'react';
-import { submitContactForm } from '@/app/actions';
+import { useRef, useActionState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { submitContactForm, ContactFormState } from '@/app/actions';
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" className="w-full" disabled={pending} size="lg">
-      {pending ? 'Sending...' : 'Send Message'}
-    </Button>
-  );
-}
+const initialState: ContactFormState = {
+  message: '',
+  fields: {},
+  issues: [],
+};
 
 export default function Contact() {
-  const initialState = { message: '', issues: [], fields: {} };
-  const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -35,16 +29,16 @@ export default function Contact() {
     if (state.message) {
       if (state.issues && state.issues.length > 0) {
         toast({
-          title: "Form Submission Error",
-          description: state.issues.join(' | '),
+          title: "Validation Error",
+          description: state.message,
           variant: 'destructive',
         });
-        setShowSuccess(false);
-      } else {
-        setShowSuccess(true);
+      } else if (state.message.includes('Thank you')) {
+        toast({
+          title: "Message Sent",
+          description: state.message,
+        });
         formRef.current?.reset();
-        const timer = setTimeout(() => setShowSuccess(false), 5000);
-        return () => clearTimeout(timer);
       }
     }
   }, [state, toast]);
@@ -83,35 +77,70 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
-                <Input id="name" name="name" placeholder="John Doe" required defaultValue={state.fields?.name} />
+                <Input 
+                  id="name" 
+                  name="name" 
+                  placeholder="John Doe" 
+                  required 
+                  defaultValue={state.fields?.name}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" name="email" type="email" placeholder="john.doe@example.com" required defaultValue={state.fields?.email} />
+                <Input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  placeholder="john.doe@example.com" 
+                  required 
+                  defaultValue={state.fields?.email}
+                />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="subject">Subject</Label>
-              <Input id="subject" name="subject" placeholder="e.g., Residential Solar Inquiry" required defaultValue={state.fields?.subject} />
+              <Input 
+                id="subject" 
+                name="subject" 
+                placeholder="e.g., Residential Solar Inquiry" 
+                required 
+                defaultValue={state.fields?.subject}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="message">Your Message</Label>
-              <Textarea id="message" name="message" placeholder="Tell us about your project or question..." rows={5} required defaultValue={state.fields?.message} />
+              <Textarea 
+                id="message" 
+                name="message" 
+                placeholder="Tell us about your project or question..." 
+                rows={5} 
+                required 
+                defaultValue={state.fields?.message}
+              />
             </div>
-            <SubmitButton />
+            
+            <Button type="submit" className="w-full" disabled={isPending} size="lg">
+              {isPending ? 'Sending...' : 'Send Message'}
+            </Button>
           </form>
 
           <AnimatePresence>
-            {showSuccess && (
+            {state.message && (
               <motion.div
                 className="mt-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
               >
-                <Alert>
-                  <CheckCircle className="h-4 w-4" />
-                  <AlertTitle>Success!</AlertTitle>
+                <Alert variant={state.issues && state.issues.length > 0 ? "destructive" : "default"}>
+                  {state.issues && state.issues.length > 0 ? (
+                    <AlertCircle className="h-4 w-4" />
+                  ) : (
+                    <CheckCircle className="h-4 w-4" />
+                  )}
+                  <AlertTitle>
+                    {state.issues && state.issues.length > 0 ? "Error" : "Success!"}
+                  </AlertTitle>
                   <AlertDescription>
                     {state.message}
                   </AlertDescription>

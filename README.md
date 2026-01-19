@@ -8,6 +8,14 @@ This is the official website for KOVentures, a company specializing in renewable
 - **Animations**: The website uses animations to make it more engaging for users.
 - **Contact Form**: Users can contact KOVentures directly through the website.
 
+## Design & Architecture Scope
+
+This project enforces a modern frontend strategy focusing on:
+
+- **Frontend**: Full adherence to **Semantic HTML5** standards for better accessibility and SEO structure.
+- **Styling**: rigorous use of **Modern CSS3**, specifically leveraging **CSS Grid** and **Flexbox** layouts. 
+- **Aesthetic**: A modern "Metallic Blue" minimalist design system featuring glassmorphism, fluid animations (Framer Motion), and premium typography (Outfit/Inter).
+
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/)

@@ -41,33 +41,40 @@ export default function Hero() {
           data-ai-hint={heroImage.imageHint}
         />
       )}
-      <div className="absolute inset-0 bg-primary/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-background/90" />
       <motion.div
-        className="relative z-10 container mx-auto px-4 text-center text-primary-foreground"
+        className="relative z-10 container mx-auto px-4 text-center text-white"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
+        <motion.div
+          variants={itemVariants}
+          className="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-md border border-white/20"
+        >
+          <span className="text-sm font-medium text-primary-foreground/90 uppercase tracking-wider">The Future of Engineering</span>
+        </motion.div>
+
         <motion.h1
-          className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl drop-shadow-md"
+          className="font-headline text-5xl font-bold md:text-7xl lg:text-8xl tracking-tight leading-tight drop-shadow-lg"
           variants={itemVariants}
         >
-          Powering a Sustainable Future
+          Powering a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Sustainable Future</span>
         </motion.h1>
         <motion.p
-          className="mt-4 max-w-3xl mx-auto text-lg md:text-xl drop-shadow-sm"
+          className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-100/90 leading-relaxed font-light"
           variants={itemVariants}
         >
-          KOVentures LTD is your partner in innovative energy solutions, precision engineering, and pioneering new ventures for a better tomorrow.
+          KOVentures LTD pioneers innovative energy solutions, precision engineering, and future-forward ventures.
         </motion.p>
         <motion.div
-          className="mt-8 flex flex-wrap justify-center gap-4"
+          className="mt-10 flex flex-wrap justify-center gap-4"
           variants={itemVariants}
         >
-          <Button size="lg" asChild>
-            <Link href="#renewable-energy">Explore Our Solutions</Link>
+          <Button size="lg" className="rounded-full px-8 text-lg h-12" asChild>
+            <Link href="#renewable-energy">Explore Solutions</Link>
           </Button>
-          <Button size="lg" variant="secondary" asChild>
+          <Button size="lg" variant="outline" className="rounded-full px-8 text-lg h-12 bg-white/5 border-white/30 text-white hover:bg-white/20 hover:text-white" asChild>
             <Link href="#contact">Get in Touch</Link>
           </Button>
         </motion.div>

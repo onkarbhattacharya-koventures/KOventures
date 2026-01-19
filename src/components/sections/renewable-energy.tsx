@@ -49,7 +49,7 @@ export default function RenewableEnergy() {
   };
 
   return (
-    <section id="renewable-energy" className="py-16 md:py-24 bg-background">
+    <section id="renewable-energy" className="py-16 md:py-24 bg-gradient-to-b from-background to-secondary/30">
       <motion.div
         ref={ref}
         className="container mx-auto px-4"
