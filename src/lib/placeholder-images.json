@@ -3,25 +3,25 @@
     {
       "id": "hero-background",
       "description": "A wind turbine against a sunset.",
-      "imageUrl": "/images/hero-background.svg",
+      "imageUrl": "/images/hero-background.png",
       "imageHint": "renewable energy"
     },
     {
       "id": "residential-energy",
       "description": "Solar panels on a suburban house roof.",
-      "imageUrl": "/images/residential-energy.svg",
+      "imageUrl": "/images/residential-energy.png",
       "imageHint": "solar panels home"
     },
     {
       "id": "agricultural-energy",
       "description": "Wind turbines in a rural farm field.",
-      "imageUrl": "/images/agricultural-energy.svg",
+      "imageUrl": "/images/agricultural-energy.png",
       "imageHint": "wind turbine farm"
     },
     {
       "id": "commercial-energy",
       "description": "Solar panels on a large commercial building.",
-      "imageUrl": "/images/commercial-energy.svg",
+      "imageUrl": "/images/commercial-energy.png",
       "imageHint": "solar panels factory"
     },
     {

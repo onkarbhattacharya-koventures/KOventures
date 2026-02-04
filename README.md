@@ -61,9 +61,13 @@ To build the application for production, run:
 
 ### Deployment
 
-To deploy the application, run:
+This project is deployed as a static export to GitHub Pages via GitHub Actions.
+The build outputs the static site to `out/` and the workflow in `.github/workflows/deploy.yml` publishes it.
+Static export means server actions, route handlers, and runtime APIs are not available.
+
+To build the static export locally, run:
 
 ```sh
-    npm run start
+    npm run build
 ```
 

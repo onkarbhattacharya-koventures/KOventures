@@ -8,7 +8,7 @@ import { useRef } from 'react';
 const energySectors: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'Residential',
-    description: 'Empowering homes with clean, reliable solar energy systems and reducing electricity costs for families.',
+    description: 'Empowering homes with clean, reliable wind energy systems and reducing electricity costs for families.',
     icon: Home,
   },
   {
@@ -18,7 +18,7 @@ const energySectors: { title: string; description: string; icon: LucideIcon }[] 
   },
   {
     title: 'Commercial',
-    description: 'Helping businesses achieve energy independence and operational efficiency with large-scale solar and wind power.',
+    description: 'Helping businesses achieve energy independence and operational efficiency with large-scale wind power.',
     icon: Building2,
   },
 ];

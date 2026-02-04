@@ -9,6 +9,8 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/.npm
+/.pnpm-store
 
 # testing
 /coverage
@@ -16,6 +18,7 @@
 # next.js
 /.next/
 /out/
+/turbopack/
 
 # production
 /build
@@ -23,6 +26,12 @@
 # misc
 .DS_Store
 *.pem
+*.log
+
+# local env files
+.env
+.env.*
+!.env.example
 
 # debug
 npm-debug.log*
@@ -37,9 +46,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.genkit/*
-.env*
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+.zencoder/
+.zenflow/
 
-# firebase
+# OS
+Thumbs.db
+
+# Firebase
 firebase-debug.log
 firestore-debug.log

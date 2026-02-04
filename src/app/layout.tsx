@@ -1,19 +1,23 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { cn } from '@/lib/utils';
 
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: './fonts/Inter-latin.woff2',
   variable: '--font-inter',
   display: 'swap',
+  weight: '100 900',
+  style: 'normal',
 });
 
-const outfit = Outfit({
-  subsets: ['latin'],
+const outfit = localFont({
+  src: './fonts/Outfit-latin.woff2',
   variable: '--font-outfit',
   display: 'swap',
+  weight: '100 900',
+  style: 'normal',
 });
 
 export const metadata: Metadata = {
