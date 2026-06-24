@@ -5,7 +5,6 @@ import RenewableEnergy from '@/components/sections/renewable-energy';
 import Calibration from '@/components/sections/calibration';
 import OtherVentures from '@/components/sections/other-ventures';
 import Contact from '@/components/sections/contact';
-import FoundersSection from '@/components/sections/about-us';
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <FoundersSection />
         <RenewableEnergy />
         <Calibration />
         <OtherVentures />
