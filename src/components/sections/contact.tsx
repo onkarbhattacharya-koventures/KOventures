@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -99,7 +99,7 @@ export default function Contact() {
             Get in Touch
           </h2>
           <p className="mt-4 text-lg text-foreground/80">
-            Have a project in mind or a question for us? We'd love to hear from you.
+            Have a project in mind or a question for us? We&apos;d love to hear from you.
           </p>
         </motion.div>
         <motion.div className="max-w-2xl mx-auto mt-12" variants={variants}>

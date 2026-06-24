@@ -22,3 +22,4 @@
 
 - Built as a static export (no server actions or route handlers).
 - Deployed to GitHub Pages via GitHub Actions.
+- Continuous integration enforces linting and TypeScript type checking before deployment.

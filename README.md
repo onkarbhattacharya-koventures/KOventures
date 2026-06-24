@@ -56,18 +56,26 @@ To start the development server, run:
 To build the application for production, run:
 
 ```sh
-    npm run build
+npm run build
+```
+
+Before production deployment, run the repo quality checks:
+
+```sh
+npm run lint
+npm run typecheck
 ```
 
 ### Deployment
 
 This project is deployed as a static export to GitHub Pages via GitHub Actions.
 The build outputs the static site to `out/` and the workflow in `.github/workflows/deploy.yml` publishes it.
+The GitHub Actions workflow now enforces `npm run lint` and `npm run typecheck` before the build step.
 Static export means server actions, route handlers, and runtime APIs are not available.
 
 To build the static export locally, run:
 
 ```sh
-    npm run build
+npm run build
 ```
 
