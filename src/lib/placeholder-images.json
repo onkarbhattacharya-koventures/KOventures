@@ -25,12 +25,6 @@
       "imageHint": "solar panels factory"
     },
     {
-      "id": "calibration-bench",
-      "description": "A high-tech calibration laboratory bench.",
-      "imageUrl": "/images/calibration-bench.svg",
-      "imageHint": "calibration laboratory"
-    },
-    {
       "id": "other-ventures",
       "description": "Abstract image of gears and lightbulbs representing innovation.",
       "imageUrl": "/images/other-ventures.svg",

@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     default: 'KOVentures Hub',
     template: '%s | KOVentures Hub',
   },
-  description: 'KOVentures LTD is a leader in renewable energy, precision calibration, and innovative future ventures.',
-  keywords: ['Renewable Energy', 'Calibration', 'KOVentures', 'Innovation'],
+  description: 'KOVentures LTD is a leader in renewable energy and innovative future ventures.',
+  keywords: ['Renewable Energy', 'KOVentures', 'Innovation'],
   authors: [{ name: 'KOVentures' }],
 };
 

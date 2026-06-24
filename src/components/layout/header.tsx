@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { href: '#renewable-energy', label: 'Renewable Energy' },
-  { href: '#calibration', label: 'Calibration' },
   { href: '#ventures', label: 'Other Ventures' },
 ];
 
