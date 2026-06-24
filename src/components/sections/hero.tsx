@@ -65,7 +65,7 @@ export default function Hero() {
           className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-100/90 leading-relaxed font-light"
           variants={itemVariants}
         >
-          KOVentures LTD pioneers innovative energy solutions, precision engineering, and future-forward ventures.
+          KOVentures LTD pioneers innovative energy solutions and future-forward AI ventures.
         </motion.p>
         <motion.div
           className="mt-10 flex flex-wrap justify-center gap-4"

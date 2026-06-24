@@ -23,6 +23,10 @@ This project enforces a modern frontend strategy focusing on:
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 
+## AI World
+
+Welcome to the AI World section, where advanced machine intelligence meets innovative product design.
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.

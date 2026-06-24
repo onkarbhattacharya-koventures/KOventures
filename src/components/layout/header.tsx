@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navLinks = [
   { href: '#renewable-energy', label: 'Renewable Energy' },
   { href: '#ventures', label: 'Other Ventures' },
+  { href: 'https://aiworld.koventures.co.uk', label: 'AI World', external: true },
 ];
 
 export default function Header() {
@@ -43,15 +44,27 @@ export default function Header() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:font-semibold"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:font-semibold"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:font-semibold"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
           <Button asChild variant="secondary" size="sm" className="rounded-full font-bold">
             <a href="https://koventus.koventures.co.uk" target="_blank" rel="noopener noreferrer">
               KOVentus
@@ -107,13 +120,25 @@ export default function Header() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 + 0.1 }}
                     >
-                      <Link
-                        href={link.href}
-                        className="block text-2xl font-headline font-bold text-foreground transition-colors hover:text-primary"
-                        onClick={closeMenu}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-2xl font-headline font-bold text-foreground transition-colors hover:text-primary"
+                          onClick={closeMenu}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="block text-2xl font-headline font-bold text-foreground transition-colors hover:text-primary"
+                          onClick={closeMenu}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                   <motion.div
