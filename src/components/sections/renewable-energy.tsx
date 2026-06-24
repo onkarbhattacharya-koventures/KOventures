@@ -23,7 +23,7 @@ const energySectors: { title: string; description: string; icon: LucideIcon }[] 
   },
   {
     title: 'Local Authorities',
-    description: 'Serving government buildings, council properties, community homes, NHS facilities, schools, and other public sector sites with reliable clean energy solutions.',
+    description: 'Partnering with councils and public organisations—government buildings, community housing, NHS sites and schools—to deliver tailored clean energy systems that cut emissions, reduce running costs and boost local resilience.',
     icon: Users,
   },
 ];
@@ -76,17 +76,25 @@ export default function RenewableEnergy() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {energySectors.map((sector) => (
             <motion.div key={sector.title} variants={itemVariants}>
-              <Card className="text-center h-full shadow-lg hover:shadow-xl transition-shadow duration-300 hover:-translate-y-2">
-                <CardHeader>
-                  <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit">
-                    <sector.icon className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle className="font-headline pt-4">{sector.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">{sector.description}</p>
-                </CardContent>
-              </Card>
+              <a
+                href="https://koventus.koventures.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${sector.title} on KOVentus`}
+                className="block"
+              >
+                <Card className="text-center h-full shadow-lg hover:shadow-xl transition-shadow duration-300 hover:-translate-y-2">
+                  <CardHeader>
+                    <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit">
+                      <sector.icon className="h-10 w-10 text-primary" />
+                    </div>
+                    <CardTitle className="font-headline pt-4">{sector.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-foreground/70">{sector.description}</p>
+                  </CardContent>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </div>

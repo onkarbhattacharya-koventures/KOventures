@@ -53,7 +53,7 @@ export default function Header() {
             </Link>
           ))}
           <Button asChild variant="secondary" size="sm" className="rounded-full font-bold">
-            <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer">
+            <a href="https://koventus.koventures.co.uk" target="_blank" rel="noopener noreferrer">
               KOVentus
             </a>
           </Button>
