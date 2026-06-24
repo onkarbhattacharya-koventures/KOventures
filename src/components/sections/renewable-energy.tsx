@@ -1,6 +1,6 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Home, Tractor, Building2 } from 'lucide-react';
+import { Home, Tractor, Building2, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -20,6 +20,11 @@ const energySectors: { title: string; description: string; icon: LucideIcon }[] 
     title: 'Commercial',
     description: 'Helping businesses achieve energy independence and operational efficiency with large-scale wind power.',
     icon: Building2,
+  },
+  {
+    title: 'Local Authorities',
+    description: 'Serving government buildings, council properties, community homes, NHS facilities, schools, and other public sector sites with reliable clean energy solutions.',
+    icon: Users,
   },
 ];
 
@@ -68,7 +73,7 @@ export default function RenewableEnergy() {
             We provide comprehensive renewable energy generation for diverse sectors, ensuring sustainability and efficiency.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {energySectors.map((sector) => (
             <motion.div key={sector.title} variants={itemVariants}>
               <Card className="text-center h-full shadow-lg hover:shadow-xl transition-shadow duration-300 hover:-translate-y-2">

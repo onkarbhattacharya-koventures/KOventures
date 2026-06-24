@@ -54,7 +54,7 @@ export default function Header() {
           ))}
           <Button asChild variant="secondary" size="sm" className="rounded-full font-bold">
             <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer">
-              KO Energy
+              KOVentus
             </a>
           </Button>
         </nav>
@@ -123,7 +123,7 @@ export default function Header() {
                   >
                     <Button asChild variant="secondary" className="w-full rounded-full text-lg h-12 font-bold">
                       <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
-                        KO Energy
+                        KOVentus
                       </a>
                     </Button>
                   </motion.div>

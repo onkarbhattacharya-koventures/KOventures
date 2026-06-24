@@ -3,10 +3,10 @@ import Footer from '@/components/layout/footer';
 
 export const metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for KOVentures Hub and KO Energy. We are committed to protecting your data.',
+  description: 'Privacy Policy for KOVentures Hub and KOVentus. We are committed to protecting your data.',
   openGraph: {
-    title: 'KO Energy | Privacy Policy',
-    description: 'Privacy Policy for KO Energy. We are committed to protecting your data.',
+    title: 'KOVentus | Privacy Policy',
+    description: 'Privacy Policy for KOVentus. We are committed to protecting your data.',
     url: 'https://koenergy.uk/privacy',
     type: 'website',
   },
