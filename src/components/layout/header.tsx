@@ -66,7 +66,7 @@ export default function Header() {
             )
           )}
           <Button asChild variant="secondary" size="sm" className="rounded-full font-bold">
-            <a href="https://koventus.koventures.co.uk" target="_blank" rel="noopener noreferrer">
+            <a href="https://koventus.koventures.co.uk">
               KOVentus
             </a>
           </Button>
@@ -98,7 +98,7 @@ export default function Header() {
             {/* Slide-out Menu */}
             <motion.div
               id="mobile-menu"
-              className="fixed right-0 top-0 z-50 h-full w-[80%] max-w-sm bg-background/95 p-6 shadow-2xl backdrop-blur-xl md:hidden"
+              className="fixed right-0 top-0 z-50 h-full w-[80%] max-w-sm bg-background/80 p-6 shadow-2xl backdrop-blur-xl md:hidden"
               initial={{ x: '100%' }}
               animate={{ x: '0%' }}
               exit={{ x: '100%' }}
@@ -147,7 +147,7 @@ export default function Header() {
                     transition={{ delay: navLinks.length * 0.1 + 0.1 }}
                   >
                     <Button asChild variant="secondary" className="w-full rounded-full text-lg h-12 font-bold">
-                      <a href="https://koenergy.koventures.co.uk" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+                      <a href="https://koventus.koventures.co.uk" onClick={closeMenu}>
                         KOVentus
                       </a>
                     </Button>
